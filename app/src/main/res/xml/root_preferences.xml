@@ -1,35 +1,48 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:fragment="SettingsFragment">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory app:title="@string/setting_common_header">
+        <Preference></Preference>
+    </PreferenceCategory>
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+    <PreferenceCategory app:title="@string/setting_calendar_header">
 
         <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
+            app:key="dateFormat_setting"
+            app:title="@string/setting_dateFormat"
+            app:entries="@array/setting_dateFormat_entries"
+            app:entryValues="@array/setting_dateFormat_values"
+            app:defaultValue="dd.mm.yyyy"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
+    <PreferenceCategory app:title="@string/setting_weather_header">
 
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
+        <ListPreference
+            app:key="temperatureUnit_setting"
+            app:title="@string/setting_temperatureUnit"
+            app:entries="@array/setting_temperatureUnit_entries"
+            app:entryValues="@array/setting_temperatureUnit_values"
+            app:defaultValue="c"
+            app:useSimpleSummaryProvider="true" />
 
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+        <ListPreference
+            app:key="windSpeedUnit_setting"
+            app:title="@string/setting_windSpeedUnit"
+            app:entries="@array/setting_windSpeedUnit_entries"
+            app:entryValues="@array/setting_windSpeedUnit_values"
+            app:defaultValue="kmh"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:key="precipitationUnit_setting"
+            app:title="@string/setting_precipitationUnit"
+            app:entries="@array/setting_precipitationUnit_entries"
+            app:entryValues="@array/setting_precipitationUnit_values"
+            app:defaultValue="mm"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 

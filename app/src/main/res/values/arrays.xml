@@ -1,4 +1,48 @@
 <resources>
+    <!-- Dateformat Settings -->
+    <string-array name="setting_dateFormat_entries">
+        <item>Day.Month.Year</item>
+        <item>Month.Day.Year</item>
+    </string-array>
+    <string-array name="setting_dateFormat_values">
+        <item>dd.mm.yyyy</item>
+        <item>mm.dd.yyyy</item>
+    </string-array>
+
+    <!-- Temperature Unit Settings -->
+    <string-array name="setting_temperatureUnit_entries">
+        <item>Celsius °C</item>
+        <item>Fahrenheit °F</item>
+    </string-array>
+    <string-array name="setting_temperatureUnit_values">
+        <item>c</item>
+        <item>f</item>
+    </string-array>
+
+    <!-- Wind Speed Unit -->
+    <string-array name="setting_windSpeedUnit_entries">
+        <item>Km/h</item>
+        <item>m/s</item>
+        <item>Mph</item>
+        <item>Knots</item>
+    </string-array>
+    <string-array name="setting_windSpeedUnit_values">
+        <item>kmh</item>
+        <item>ms</item>
+        <item>mph</item>
+        <item>kn</item>
+    </string-array>
+
+    <!-- Precipitation Unit -->
+    <string-array name="setting_precipitationUnit_entries">
+        <item>Millimeter</item>
+        <item>Inch</item>
+    </string-array>
+    <string-array name="setting_precipitationUnit_values">
+        <item>mm</item>
+        <item>inch</item>
+    </string-array>
+
     <!-- Reply Preference -->
     <string-array name="reply_entries">
         <item>Reply</item>

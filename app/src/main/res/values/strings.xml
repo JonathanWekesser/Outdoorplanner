@@ -6,6 +6,20 @@
     <string name="title_search">Search</string>
     <string name="title_settings">Settings</string>
 
+    <!-- Settings -->
+    <string name="setting_common_header">Common</string>
+
+    <string name="setting_calendar_header">Calendar</string>
+        <string name="setting_dateFormat">Date Format</string>
+
+    <string name="setting_weather_header">Weather</string>
+        <string name="setting_temperatureUnit">Temperature Unit</string>
+        <string name="setting_windSpeedUnit">Wind Speed Unit</string>
+        <string name="setting_precipitationUnit">Precipitation Unit</string>
+
+
+    <string name="setting_additional_header">Additional</string>
+
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
