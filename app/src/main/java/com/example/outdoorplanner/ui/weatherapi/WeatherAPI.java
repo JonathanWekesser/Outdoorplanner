@@ -1,6 +1,7 @@
 package com.example.outdoorplanner.ui.weatherapi;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,18 +31,34 @@ public class WeatherAPI {
     }
 
     private RequestQueue queue;
-    private String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,weathercode,cloudcover,windspeed_10m,winddirection_10m,windgusts_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant&current_weather=true&timezone=auto";
+    //private String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,weathercode,cloudcover,windspeed_10m,winddirection_10m,windgusts_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant&current_weather=true&timezone=auto";
+    private String url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,weathercode&current_weather=true";
 
 
-    protected void sendRequest(Context context) {
+    public void sendRequest(Context context) {
 
         queue = Volley.newRequestQueue(context);
-        final String[] currentWeather = new String[6];
+
+        //final String[] currentWeather = new String[6];
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    JSONObject currentWeather = response.getJSONObject("current_weather");
+
+                    if (restListener != null && currentWeather != null) {
+                        restListener.onNewCurrentWeatherFromRest(currentWeather);
+                    } else if (restListener != null) {
+                        Log.e("REST", "currentWeather ist null");
+                    } else {
+                        Log.e("REST", "restListener ist null");
+                    }
+
+                    //restListener.onNewCurrentWeatherFromRest(currentWeather);
+                    String temperature = currentWeather.getString("temperature");
+                    Log.i("Temperature", temperature);
+                    /*
                     JSONObject weatherData = response.getJSONObject("data");
                     JSONObject currentWeatherData = weatherData.getJSONObject("current_weather");
                     currentWeather[0] = currentWeatherData.getString("temperature");
@@ -52,7 +69,7 @@ public class WeatherAPI {
                     currentWeather[5] = currentWeatherData.getString("time");
 
                     restListener.onNewCurrentWeatherFromRest(currentWeather);
-
+                    */
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -60,6 +77,7 @@ public class WeatherAPI {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("onErrorResponse", "onErrorResponse wurde aufgerufen");
             }
         });
         queue.add(jsonObjectRequest);

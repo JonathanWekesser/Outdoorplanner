@@ -2,6 +2,7 @@ package com.example.outdoorplanner.ui.weather;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.example.outdoorplanner.ui.weatherapi.WeatherAPI;
 public class WeatherFragment extends Fragment {
 
     private FragmentWeatherBinding binding;
+    WeatherAPI call;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -27,7 +29,11 @@ public class WeatherFragment extends Fragment {
 
         binding = FragmentWeatherBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+/*
+        call = new WeatherAPI();
+        Context viewModelContext = binding.getRoot().getContext();
+        call.sendRequest(viewModelContext);
+*/
         final TextView textView = binding.textWeather;
         searchViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 

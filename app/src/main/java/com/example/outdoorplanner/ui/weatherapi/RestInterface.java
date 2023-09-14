@@ -4,5 +4,5 @@ import org.json.JSONObject;
 
 public interface RestInterface {
 
-    void onNewCurrentWeatherFromRest(String[] currentWeather);
+    void onNewCurrentWeatherFromRest(JSONObject currentWeather);
 }
